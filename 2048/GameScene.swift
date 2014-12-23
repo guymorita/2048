@@ -67,7 +67,9 @@ class GameScene: UIView {
     
     func moveBlock(block: Block, completion:() -> ()) {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            block.sprite!.center = self.pointForColumn(block.column, row: block.row)
+            if block.sprite? != nil {
+                block.sprite!.center = self.pointForColumn(block.column, row: block.row)
+            }
         }) { (Bool) -> Void in
             //
         }
@@ -75,7 +77,7 @@ class GameScene: UIView {
     
     func upgradeBlock(newBlock: Block, assimilatorBlock: Block, assimilatedBlock: Block, completion: () -> ()) {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            if assimilatedBlock.sprite != nil {
+            if assimilatedBlock.sprite != nil && assimilatorBlock.sprite != nil {
                 assimilatedBlock.sprite!.center = self.pointForColumn(newBlock.column, row: newBlock.row)
                 assimilatedBlock.sprite!.alpha = 0
                 assimilatorBlock.sprite!.alpha = 0

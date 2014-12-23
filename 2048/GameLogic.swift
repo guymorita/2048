@@ -37,6 +37,11 @@ class GameLogic {
         blockArray = Array2D<Block>(columns: NumColumns, rows: NumRows)
     }
     
+    func resetGame() {
+        score = 0
+        blockArray = Array2D<Block>(columns: NumColumns, rows: NumRows)
+    }
+    
     func beginGame() {
         delegate?.gameDidBegin(self)
     }
@@ -77,6 +82,27 @@ class GameLogic {
         }
     }
     
+    func tryMoveAllBlocksUp() {
+        for row in 0...blockArray.rows-2 {
+            for col in 0...blockArray.columns-1 {
+                let startingSlot = blockArray[col, row+1]
+                if startingSlot == nil {
+                    continue
+                }
+                tryMoveBlock(startingSlot!, endCol: startingSlot!.column, endRow: startingSlot!.row-1, completion: startingSlot!.raiseBlockByOneRow)
+            }
+        }
+        let randCol = randColumn()
+        let lastRow = blockArray.rows-1
+        if blockArray[randCol, lastRow] == nil {
+            let newBlock = Block(column: randCol, row: lastRow)
+            blockArray[randCol, lastRow] = newBlock
+            nextBlock = newBlock
+            movingFrom = (0, 1)
+            delegate?.gameBlockEntering(self)
+        }
+    }
+    
     func tryMoveAllBlocksRight() {
         for (var col = blockArray.columns-1; col > 0; col--) {
             for row in 0...blockArray.rows-1 {
@@ -108,9 +134,10 @@ class GameLogic {
             }
         }
         let randRow = randRowww()
-        if blockArray[blockArray.columns-1, randRow] == nil {
-            let newBlock = Block(column: blockArray.columns-1, row: randRow)
-            blockArray[blockArray.columns-1, randRow] = newBlock
+        let lastColumn = blockArray.columns-1
+        if blockArray[lastColumn, randRow] == nil {
+            let newBlock = Block(column: lastColumn, row: randRow)
+            blockArray[lastColumn, randRow] = newBlock
             nextBlock = newBlock
             movingFrom = (1, 0)
             delegate?.gameBlockEntering(self)

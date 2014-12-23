@@ -22,6 +22,18 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFR-Qd-upv" userLabel="Play Again Button">
+                                <rect key="frame" x="105" y="554" width="164" height="66"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="24"/>
+                                <state key="normal" title="Play Again">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapPlayAgain:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UDk-bd-UDL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -33,6 +45,9 @@
                         </connections>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="playAgainButton" destination="vFR-Qd-upv" id="Lfu-3Q-kbK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="down" id="y6R-cw-d1v" userLabel="Swipe Down">
@@ -53,7 +68,7 @@
                         <outlet property="delegate" destination="vXZ-lx-hvc" id="Qes-k4-rTW"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="iNO-tQ-tlN" userLabel="Swipe Up">
+                <swipeGestureRecognizer direction="up" id="iNO-tQ-tlN" userLabel="Swipe Up">
                     <connections>
                         <action selector="didSwipeUp:" destination="vXZ-lx-hvc" id="2lH-p6-kdK"/>
                         <outlet property="delegate" destination="vXZ-lx-hvc" id="Pjc-97-icm"/>

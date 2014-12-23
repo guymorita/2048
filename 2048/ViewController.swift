@@ -17,6 +17,8 @@ class ViewController: UIViewController, GameLogicDelegate {
     var gameLogic: GameLogic!
     var scene: GameScene!
 
+    @IBOutlet weak var playAgainButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -28,7 +30,9 @@ class ViewController: UIViewController, GameLogicDelegate {
         gameLogic = GameLogic()
         gameLogic.delegate = self
         gameLogic.beginGame()
-
+        
+        playAgainButton.layer.cornerRadius = 5.0
+//        playAgainButton.alpha = 0.0
 
     }
 
@@ -47,7 +51,19 @@ class ViewController: UIViewController, GameLogicDelegate {
         gameLogic.tryMoveAllBlocksLeft()
     }
     @IBAction func didSwipeUp(sender: UISwipeGestureRecognizer) {
+        gameLogic.tryMoveAllBlocksUp()
     }
+    @IBAction func didTapPlayAgain(sender: UIButton) {
+        resetGame()
+    }
+    
+    func resetGame() {
+        let sceneFrame = CGRectMake(0, 100, screenWidth, screenWidth)
+        scene.removeFromSuperview()
+        scene = GameScene(frame: sceneFrame)
+        self.view.addSubview(scene)
+    }
+    
     func gameDidBegin(gameLogic: GameLogic) {
         scene.addStartingBlockToBoard(gameLogic.nextInitialBlock()) {
             self.scene.addStartingBlockToBoard(self.gameLogic.nextInitialBlock()) {
