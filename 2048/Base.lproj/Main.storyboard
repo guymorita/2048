@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,15 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2048" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xat-IW-abI">
-                                <rect key="frame" x="116" y="28" width="142" height="55"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2048" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xat-IW-abI">
+                                <rect key="frame" x="10" y="10" width="140" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="231-s2-snf"/>
+                                    <constraint firstAttribute="width" constant="140" id="quq-zi-yi9"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFR-Qd-upv" userLabel="Play Again Button">
-                                <rect key="frame" x="105" y="554" width="164" height="66"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFR-Qd-upv" userLabel="Play Again Button">
+                                <rect key="frame" x="107" y="547" width="160" height="70"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="9pU-SB-nnc"/>
+                                    <constraint firstAttribute="height" constant="70" id="KlW-a4-D7e"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="24"/>
                                 <state key="normal" title="Play Again">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,9 +43,29 @@
                                     <action selector="didTapPlayAgain:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UDk-bd-UDL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 9999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf8-Xg-FMJ" userLabel="Score:">
+                                <rect key="frame" x="174" y="10" width="185" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="4aK-WQ-nk9"/>
+                                    <constraint firstAttribute="height" constant="60" id="Bxu-nm-h9p"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Lfq-uz-F9I"/>
+                                    <constraint firstAttribute="width" constant="185" id="aMi-8H-AN2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Lf8-Xg-FMJ" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="10" id="IYS-Ck-kiE"/>
+                            <constraint firstAttribute="centerX" secondItem="vFR-Qd-upv" secondAttribute="centerX" id="OvK-Zw-Ajt"/>
+                            <constraint firstItem="Xat-IW-abI" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="10" id="gHB-O8-G1H"/>
+                            <constraint firstItem="Xat-IW-abI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="iVQ-yA-1H1"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vFR-Qd-upv" secondAttribute="bottom" constant="50" id="j64-bA-kj8"/>
+                            <constraint firstItem="Lf8-Xg-FMJ" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="wJR-TL-wry"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="y6R-cw-d1v" appends="YES" id="kk1-6G-abp"/>
                             <outletCollection property="gestureRecognizers" destination="LuV-zk-z2V" appends="YES" id="HYU-fb-1jn"/>
@@ -47,6 +76,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="playAgainButton" destination="vFR-Qd-upv" id="Lfu-3Q-kbK"/>
+                        <outlet property="scoreLabel" destination="Lf8-Xg-FMJ" id="nGE-um-hpX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

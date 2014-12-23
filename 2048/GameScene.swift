@@ -77,6 +77,7 @@ class GameScene: UIView {
     
     func upgradeBlock(newBlock: Block, assimilatorBlock: Block, assimilatedBlock: Block, completion: () -> ()) {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            // THIS is leaving ghosts if the user moves too fast
             if assimilatedBlock.sprite != nil && assimilatorBlock.sprite != nil {
                 assimilatedBlock.sprite!.center = self.pointForColumn(newBlock.column, row: newBlock.row)
                 assimilatedBlock.sprite!.alpha = 0
@@ -94,7 +95,6 @@ class GameScene: UIView {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             newBlock.sprite!.center = self.pointForColumn(newBlock.column, row: newBlock.row)
         }) { (Bool) -> Void in
-            //
         }
         
     }

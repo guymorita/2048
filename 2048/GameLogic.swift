@@ -19,6 +19,10 @@ protocol GameLogicDelegate {
     func gameBlockUpgraded(gameLogic: GameLogic)
     
     func gameBlockEntering(gameLogic: GameLogic)
+    
+    func gameFreeToMove(gameLogic: GameLogic)
+    
+    func gameNotFreeToMove(gameLogic: GameLogic)
 }
 
 class GameLogic {
@@ -40,6 +44,7 @@ class GameLogic {
     func resetGame() {
         score = 0
         blockArray = Array2D<Block>(columns: NumColumns, rows: NumRows)
+        beginGame()
     }
     
     func beginGame() {
@@ -57,12 +62,14 @@ class GameLogic {
                 foundOpenSlot = true
             }
         }
-        let block = Block(column: column, row: row, value: 2)
+        let block = Block(column: column, row: row)
+        score += block.value
         blockArray[column, row] = block
         return block
     }
     
     func tryMoveAllBlocksDown() {
+        delegate?.gameNotFreeToMove(self)
         for (var row = blockArray.rows-1; row > 0; row--) {
             for col in 0...blockArray.columns-1 {
                 let startingSlot = blockArray[col, row-1]
@@ -75,14 +82,17 @@ class GameLogic {
         let randCol = randColumn()
         if blockArray[randCol, 0] == nil {
             let newBlock = Block(column: randCol, row: 0)
+            score += newBlock.value
             blockArray[randCol, 0] = newBlock
             nextBlock = newBlock
             movingFrom = (0, -1)
             delegate?.gameBlockEntering(self)
         }
+        delegate?.gameFreeToMove(self)
     }
     
     func tryMoveAllBlocksUp() {
+        delegate?.gameNotFreeToMove(self)
         for row in 0...blockArray.rows-2 {
             for col in 0...blockArray.columns-1 {
                 let startingSlot = blockArray[col, row+1]
@@ -96,14 +106,17 @@ class GameLogic {
         let lastRow = blockArray.rows-1
         if blockArray[randCol, lastRow] == nil {
             let newBlock = Block(column: randCol, row: lastRow)
+            score += newBlock.value
             blockArray[randCol, lastRow] = newBlock
             nextBlock = newBlock
             movingFrom = (0, 1)
             delegate?.gameBlockEntering(self)
         }
+        delegate?.gameFreeToMove(self)
     }
     
     func tryMoveAllBlocksRight() {
+        delegate?.gameNotFreeToMove(self)
         for (var col = blockArray.columns-1; col > 0; col--) {
             for row in 0...blockArray.rows-1 {
                 let startingSlot = blockArray[col-1, row]
@@ -116,14 +129,17 @@ class GameLogic {
         let randRow = randRowww()
         if blockArray[0, randRow] == nil {
             let newBlock = Block(column: 0, row: randRow)
+            score += newBlock.value
             blockArray[0, randRow] = newBlock
             nextBlock = newBlock
             movingFrom = (-1, 0)
             delegate?.gameBlockEntering(self)
         }
+        delegate?.gameFreeToMove(self)
     }
     
     func tryMoveAllBlocksLeft() {
+        delegate?.gameNotFreeToMove(self)
         for col in 0...blockArray.columns-2 {
             for row in 0...blockArray.rows-1 {
                 let startingSlot = blockArray[col+1, row]
@@ -137,11 +153,13 @@ class GameLogic {
         let lastColumn = blockArray.columns-1
         if blockArray[lastColumn, randRow] == nil {
             let newBlock = Block(column: lastColumn, row: randRow)
+            score += newBlock.value
             blockArray[lastColumn, randRow] = newBlock
             nextBlock = newBlock
             movingFrom = (1, 0)
             delegate?.gameBlockEntering(self)
         }
+        delegate?.gameFreeToMove(self)
     }
     
     func tryMoveBlock(startingBlock: Block, endCol: Int, endRow: Int, completion:()->()) {

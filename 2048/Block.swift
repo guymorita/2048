@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let NumberOfColors: UInt32 = 4
+let NumberOfColors: UInt32 = 6
 
 func getColorIdx(value: Int) -> Int {
     switch value {
@@ -22,19 +22,19 @@ func getColorIdx(value: Int) -> Int {
     case 16:
         return 3
     case 32:
-        return 0
+        return 4
     case 64:
-        return 1
+        return 5
     case 128:
-        return 2
-    case 256:
-        return 3
-    case 512:
         return 0
-    case 1028:
+    case 256:
         return 1
-    case 2048:
+    case 512:
         return 2
+    case 1028:
+        return 3
+    case 2048:
+        return 4
     default:
         return 0
     }
@@ -46,7 +46,7 @@ func randStartingValue() -> Int {
 
 enum BlockColor: Int, Printable {
     
-    case Blue = 0, Purple = 1, Red = 2, Teal = 3
+    case Blue = 0, Purple = 1, Orange = 2, Teal = 3, Red = 4, Yellow = 5
     
     var spriteName: String {
         switch self {
@@ -58,6 +58,10 @@ enum BlockColor: Int, Printable {
             return "red" // 8, 128, 2048
         case .Teal:
             return "teal" // 16, 256
+        case .Orange:
+            return "orange"
+        case .Yellow:
+            return "yellow"
         }
     }
     
