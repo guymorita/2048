@@ -14,6 +14,19 @@
 		BA7440EF1A48FA1000FB72C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA7440EE1A48FA1000FB72C1 /* Images.xcassets */; };
 		BA7440F21A48FA1000FB72C1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA7440F01A48FA1000FB72C1 /* LaunchScreen.xib */; };
 		BA7440FE1A48FA1000FB72C1 /* _048Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7440FD1A48FA1000FB72C1 /* _048Tests.swift */; };
+		BA7441161A48FF2C00FB72C1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7441151A48FF2C00FB72C1 /* GameScene.swift */; };
+		BA7441181A49003000FB72C1 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7441171A49003000FB72C1 /* GameLogic.swift */; };
+		BA74411A1A49042F00FB72C1 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7441191A49042F00FB72C1 /* Array2D.swift */; };
+		BA74411C1A49052A00FB72C1 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA74411B1A49052A00FB72C1 /* Block.swift */; };
+		BA7441261A49055F00FB72C1 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = BA74411E1A49055F00FB72C1 /* blue.png */; };
+		BA7441271A49055F00FB72C1 /* blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA74411F1A49055F00FB72C1 /* blue@2x.png */; };
+		BA7441281A49055F00FB72C1 /* purple.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7441201A49055F00FB72C1 /* purple.png */; };
+		BA7441291A49055F00FB72C1 /* purple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7441211A49055F00FB72C1 /* purple@2x.png */; };
+		BA74412A1A49055F00FB72C1 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7441221A49055F00FB72C1 /* red.png */; };
+		BA74412B1A49055F00FB72C1 /* red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7441231A49055F00FB72C1 /* red@2x.png */; };
+		BA74412C1A49055F00FB72C1 /* teal.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7441241A49055F00FB72C1 /* teal.png */; };
+		BA74412D1A49055F00FB72C1 /* teal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7441251A49055F00FB72C1 /* teal@2x.png */; };
+		BA7441301A4917D100FB72C1 /* background_new.png in Resources */ = {isa = PBXBuildFile; fileRef = BA74412F1A4917D100FB72C1 /* background_new.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +51,19 @@
 		BA7440F71A48FA1000FB72C1 /* 2048Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 2048Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA7440FC1A48FA1000FB72C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA7440FD1A48FA1000FB72C1 /* _048Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _048Tests.swift; sourceTree = "<group>"; };
+		BA7441151A48FF2C00FB72C1 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		BA7441171A49003000FB72C1 /* GameLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
+		BA7441191A49042F00FB72C1 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
+		BA74411B1A49052A00FB72C1 /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		BA74411E1A49055F00FB72C1 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
+		BA74411F1A49055F00FB72C1 /* blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue@2x.png"; sourceTree = "<group>"; };
+		BA7441201A49055F00FB72C1 /* purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple.png; sourceTree = "<group>"; };
+		BA7441211A49055F00FB72C1 /* purple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple@2x.png"; sourceTree = "<group>"; };
+		BA7441221A49055F00FB72C1 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		BA7441231A49055F00FB72C1 /* red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red@2x.png"; sourceTree = "<group>"; };
+		BA7441241A49055F00FB72C1 /* teal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teal.png; sourceTree = "<group>"; };
+		BA7441251A49055F00FB72C1 /* teal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teal@2x.png"; sourceTree = "<group>"; };
+		BA74412F1A4917D100FB72C1 /* background_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_new.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +107,11 @@
 			children = (
 				BA7440E41A48FA1000FB72C1 /* AppDelegate.swift */,
 				BA7440E91A48FA1000FB72C1 /* ViewController.swift */,
+				BA7441191A49042F00FB72C1 /* Array2D.swift */,
+				BA7441171A49003000FB72C1 /* GameLogic.swift */,
 				BA7440EB1A48FA1000FB72C1 /* Main.storyboard */,
+				BA7441151A48FF2C00FB72C1 /* GameScene.swift */,
+				BA74411B1A49052A00FB72C1 /* Block.swift */,
 				BA7440EE1A48FA1000FB72C1 /* Images.xcassets */,
 				BA7440F01A48FA1000FB72C1 /* LaunchScreen.xib */,
 				BA7440E61A48FA1000FB72C1 /* _048.xcdatamodeld */,
@@ -93,6 +123,8 @@
 		BA7440E21A48FA1000FB72C1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BA74412E1A4917C100FB72C1 /* Images */,
+				BA74411D1A49054D00FB72C1 /* Block Sprites */,
 				BA7440E31A48FA1000FB72C1 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -113,6 +145,29 @@
 				BA7440FC1A48FA1000FB72C1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA74411D1A49054D00FB72C1 /* Block Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				BA74411E1A49055F00FB72C1 /* blue.png */,
+				BA74411F1A49055F00FB72C1 /* blue@2x.png */,
+				BA7441201A49055F00FB72C1 /* purple.png */,
+				BA7441211A49055F00FB72C1 /* purple@2x.png */,
+				BA7441221A49055F00FB72C1 /* red.png */,
+				BA7441231A49055F00FB72C1 /* red@2x.png */,
+				BA7441241A49055F00FB72C1 /* teal.png */,
+				BA7441251A49055F00FB72C1 /* teal@2x.png */,
+			);
+			name = "Block Sprites";
+			sourceTree = "<group>";
+		};
+		BA74412E1A4917C100FB72C1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				BA74412F1A4917D100FB72C1 /* background_new.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,8 +251,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA7440ED1A48FA1000FB72C1 /* Main.storyboard in Resources */,
+				BA74412C1A49055F00FB72C1 /* teal.png in Resources */,
+				BA7441301A4917D100FB72C1 /* background_new.png in Resources */,
 				BA7440F21A48FA1000FB72C1 /* LaunchScreen.xib in Resources */,
+				BA7441291A49055F00FB72C1 /* purple@2x.png in Resources */,
 				BA7440EF1A48FA1000FB72C1 /* Images.xcassets in Resources */,
+				BA74412B1A49055F00FB72C1 /* red@2x.png in Resources */,
+				BA7441271A49055F00FB72C1 /* blue@2x.png in Resources */,
+				BA74412A1A49055F00FB72C1 /* red.png in Resources */,
+				BA7441261A49055F00FB72C1 /* blue.png in Resources */,
+				BA7441281A49055F00FB72C1 /* purple.png in Resources */,
+				BA74412D1A49055F00FB72C1 /* teal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +280,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA7440EA1A48FA1000FB72C1 /* ViewController.swift in Sources */,
+				BA74411C1A49052A00FB72C1 /* Block.swift in Sources */,
+				BA74411A1A49042F00FB72C1 /* Array2D.swift in Sources */,
 				BA7440E81A48FA1000FB72C1 /* _048.xcdatamodeld in Sources */,
+				BA7441161A48FF2C00FB72C1 /* GameScene.swift in Sources */,
+				BA7441181A49003000FB72C1 /* GameLogic.swift in Sources */,
 				BA7440E51A48FA1000FB72C1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
