@@ -28,20 +28,26 @@ class ViewController: UIViewController, GameLogicDelegate {
         gameLogic = GameLogic()
         gameLogic.delegate = self
         gameLogic.beginGame()
-        
+
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
     
     @IBAction func didSwipeDown(sender: UISwipeGestureRecognizer) {
         gameLogic.tryMoveAllBlocksDown()
     }
     
+    @IBAction func didSwipeRight(sender: UISwipeGestureRecognizer) {
+        gameLogic.tryMoveAllBlocksRight()
+    }
+    @IBAction func didSwipeLeft(sender: UISwipeGestureRecognizer) {
+        gameLogic.tryMoveAllBlocksLeft()
+    }
+    @IBAction func didSwipeUp(sender: UISwipeGestureRecognizer) {
+    }
     func gameDidBegin(gameLogic: GameLogic) {
         scene.addStartingBlockToBoard(gameLogic.nextInitialBlock()) {
             self.scene.addStartingBlockToBoard(self.gameLogic.nextInitialBlock()) {
@@ -53,8 +59,20 @@ class ViewController: UIViewController, GameLogicDelegate {
     }
     
     func gameBlockDidMove(gameLogic: GameLogic) {
-        scene.moveBlock(gameLogic.recentlyMovedBlock!) {
+        scene.moveBlock(gameLogic.movedBlock!) {
             
+        }
+    }
+    
+    func gameBlockUpgraded(gameLogic: GameLogic) {
+        scene.upgradeBlock(gameLogic.nextBlock!, assimilatorBlock: gameLogic.assimilatorBlock!, assimilatedBlock: gameLogic.assimilatedBlock!) {
+            //
+        }
+    }
+    
+    func gameBlockEntering(gameLogic: GameLogic) {
+        scene.insertNewBlock(gameLogic.nextBlock!, movingFrom: gameLogic.movingFrom){
+            //
         }
     }
 

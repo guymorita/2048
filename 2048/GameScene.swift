@@ -73,4 +73,28 @@ class GameScene: UIView {
         }
     }
     
+    func upgradeBlock(newBlock: Block, assimilatorBlock: Block, assimilatedBlock: Block, completion: () -> ()) {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            if assimilatedBlock.sprite != nil {
+                assimilatedBlock.sprite!.center = self.pointForColumn(newBlock.column, row: newBlock.row)
+                assimilatedBlock.sprite!.alpha = 0
+                assimilatorBlock.sprite!.alpha = 0
+
+            }
+            }) { (Bool) -> Void in
+            self.addStartingBlockToBoard(newBlock){}
+        }
+    }
+    
+    func insertNewBlock(newBlock: Block, movingFrom: (Int, Int), completion: () -> ()) {
+        addStartingBlockToBoard(newBlock){}
+        newBlock.sprite!.center = pointForColumn(newBlock.column + movingFrom.0, row: newBlock.row + movingFrom.1)
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            newBlock.sprite!.center = self.pointForColumn(newBlock.column, row: newBlock.row)
+        }) { (Bool) -> Void in
+            //
+        }
+        
+    }
+    
 }

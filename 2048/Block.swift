@@ -11,6 +11,39 @@ import UIKit
 
 let NumberOfColors: UInt32 = 4
 
+func getColorIdx(value: Int) -> Int {
+    switch value {
+    case 2:
+        return 0
+    case 4:
+        return 1
+    case 8:
+        return 2
+    case 16:
+        return 3
+    case 32:
+        return 0
+    case 64:
+        return 1
+    case 128:
+        return 2
+    case 256:
+        return 3
+    case 512:
+        return 0
+    case 1028:
+        return 1
+    case 2048:
+        return 2
+    default:
+        return 0
+    }
+}
+
+func randStartingValue() -> Int {
+    return [2, 4][Int(arc4random_uniform(2))]
+}
+
 enum BlockColor: Int, Printable {
     
     case Blue = 0, Purple = 1, Red = 2, Teal = 3
@@ -68,36 +101,14 @@ class Block: Hashable, Printable {
     }
     
     convenience init(column: Int, row: Int, value: Int) {
-        var colorIdx: Int {
-            switch value {
-            case 2:
-                return 0
-            case 4:
-                return 1
-            case 8:
-                return 2
-            case 16:
-                return 3
-            case 32:
-                return 0
-            case 64:
-                return 1
-            case 128:
-                return 2
-            case 256:
-                return 3
-            case 512:
-                return 0
-            case 1028:
-                return 1
-            case 2048:
-                return 2
-            default:
-                return 0
-            }
-        }
-
-        self.init(column: column, row: row, color: BlockColor.getColor(colorIdx), value: value)
+        var colorVal: Int = getColorIdx(value)
+        self.init(column: column, row: row, color: BlockColor.getColor(colorVal), value: value)
+    }
+    
+    convenience init(column: Int, row: Int) {
+        var value = randStartingValue()
+        var colorVal: Int = getColorIdx(value)
+        self.init(column: column, row: row, color: BlockColor.getColor(colorVal), value: value)
     }
     
     final func lowerBlockByOneRow() {

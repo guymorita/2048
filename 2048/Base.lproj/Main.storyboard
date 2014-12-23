@@ -27,15 +27,36 @@
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="y6R-cw-d1v" appends="YES" id="kk1-6G-abp"/>
+                            <outletCollection property="gestureRecognizers" destination="LuV-zk-z2V" appends="YES" id="HYU-fb-1jn"/>
+                            <outletCollection property="gestureRecognizers" destination="PYk-rv-V0t" appends="YES" id="LCX-L9-B15"/>
+                            <outletCollection property="gestureRecognizers" destination="iNO-tQ-tlN" appends="YES" id="pMJ-l5-fdo"/>
                         </connections>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="down" id="y6R-cw-d1v">
+                <swipeGestureRecognizer direction="down" id="y6R-cw-d1v" userLabel="Swipe Down">
                     <connections>
                         <action selector="didSwipeDown:" destination="vXZ-lx-hvc" id="itM-IK-1lF"/>
                         <outlet property="delegate" destination="vXZ-lx-hvc" id="ane-Jt-B7a"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="LuV-zk-z2V" userLabel="Swipe Right">
+                    <connections>
+                        <action selector="didSwipeRight:" destination="vXZ-lx-hvc" id="kDH-XE-IDw"/>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="ioY-Po-0b7"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="PYk-rv-V0t" userLabel="Swipe Left">
+                    <connections>
+                        <action selector="didSwipeLeft:" destination="vXZ-lx-hvc" id="L08-a5-dED"/>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="Qes-k4-rTW"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="iNO-tQ-tlN" userLabel="Swipe Up">
+                    <connections>
+                        <action selector="didSwipeUp:" destination="vXZ-lx-hvc" id="2lH-p6-kdK"/>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="Pjc-97-icm"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

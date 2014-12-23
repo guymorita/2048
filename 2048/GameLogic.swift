@@ -16,7 +16,9 @@ protocol GameLogicDelegate {
     
     func gameBlockDidMove(gameLogic: GameLogic)
     
-//    func gameBlockUpgraded(gameLogic: GameLogic)
+    func gameBlockUpgraded(gameLogic: GameLogic)
+    
+    func gameBlockEntering(gameLogic: GameLogic)
 }
 
 class GameLogic {
@@ -24,7 +26,11 @@ class GameLogic {
     var score: Int
     var nextBlock: Block?
     var delegate: GameLogicDelegate?
-    var recentlyMovedBlock: Block?
+    var movedBlock: Block?
+    var upgradedBlock: Block?
+    var assimilatedBlock: Block?
+    var assimilatorBlock: Block?
+    var movingFrom: (Int, Int) = (0, 0)
     
     init() {
         score = 0
@@ -36,47 +42,104 @@ class GameLogic {
     }
     
     func nextInitialBlock() -> Block {
-        let column = Int(arc4random_uniform(4))
-        let row = Int(arc4random_uniform(4))
+        var foundOpenSlot = false
+        var column = -1
+        var row = -1
+        while foundOpenSlot == false {
+            column = Int(arc4random_uniform(4))
+            row = Int(arc4random_uniform(4))
+            if blockArray[column, row] == nil {
+                foundOpenSlot = true
+            }
+        }
         let block = Block(column: column, row: row, value: 2)
         blockArray[column, row] = block
         return block
     }
     
     func tryMoveAllBlocksDown() {
-        // iterate through all blocks starting from top
-        // attempt to move down unless there is something below it
-            // if there is nothing, move it
-            // if it's the same number, combine
-            // if it's a different number, don't do anything
-        // if it moves, then inform the view controller
-
         for (var row = blockArray.rows-1; row > 0; row--) {
             for col in 0...blockArray.columns-1 {
                 let startingSlot = blockArray[col, row-1]
                 if startingSlot == nil {
                     continue
                 }
-                tryMoveBlockDown(startingSlot!, endCol: startingSlot!.column, endRow: startingSlot!.row+1)
+                tryMoveBlock(startingSlot!, endCol: startingSlot!.column, endRow: startingSlot!.row+1, completion: startingSlot!.lowerBlockByOneRow)
             }
+        }
+        let randCol = randColumn()
+        if blockArray[randCol, 0] == nil {
+            let newBlock = Block(column: randCol, row: 0)
+            blockArray[randCol, 0] = newBlock
+            nextBlock = newBlock
+            movingFrom = (0, -1)
+            delegate?.gameBlockEntering(self)
         }
     }
     
-    func tryMoveBlockDown(startingBlock: Block, endCol: Int, endRow: Int) {
+    func tryMoveAllBlocksRight() {
+        for (var col = blockArray.columns-1; col > 0; col--) {
+            for row in 0...blockArray.rows-1 {
+                let startingSlot = blockArray[col-1, row]
+                if startingSlot == nil {
+                    continue
+                }
+                tryMoveBlock(startingSlot!, endCol: startingSlot!.column+1, endRow: startingSlot!.row, startingSlot!.shiftRightByOneColumn)
+            }
+        }
+        let randRow = randRowww()
+        if blockArray[0, randRow] == nil {
+            let newBlock = Block(column: 0, row: randRow)
+            blockArray[0, randRow] = newBlock
+            nextBlock = newBlock
+            movingFrom = (-1, 0)
+            delegate?.gameBlockEntering(self)
+        }
+    }
+    
+    func tryMoveAllBlocksLeft() {
+        for col in 0...blockArray.columns-2 {
+            for row in 0...blockArray.rows-1 {
+                let startingSlot = blockArray[col+1, row]
+                if startingSlot == nil {
+                    continue
+                }
+                tryMoveBlock(startingSlot!, endCol: startingSlot!.column-1, endRow: startingSlot!.row, completion: startingSlot!.shiftLeftByOneColumn)
+            }
+        }
+        let randRow = randRowww()
+        if blockArray[blockArray.columns-1, randRow] == nil {
+            let newBlock = Block(column: blockArray.columns-1, row: randRow)
+            blockArray[blockArray.columns-1, randRow] = newBlock
+            nextBlock = newBlock
+            movingFrom = (1, 0)
+            delegate?.gameBlockEntering(self)
+        }
+    }
+    
+    func tryMoveBlock(startingBlock: Block, endCol: Int, endRow: Int, completion:()->()) {
         let blockAheadToCheck = blockArray[endCol, endRow]
         if blockAheadToCheck == nil {
             blockArray[endCol, endRow] = startingBlock
             blockArray[startingBlock.column, startingBlock.row] = nil
-            startingBlock.lowerBlockByOneRow()
-            recentlyMovedBlock = startingBlock
+            completion()
+            movedBlock = startingBlock
             delegate?.gameBlockDidMove(self)
         } else if (startingBlock.value == blockAheadToCheck?.value) {
-            let newBlock = Block(column: blockAheadToCheck!.column, row: blockAheadToCheck!.row, value: blockAheadToCheck!.value*2)
+            nextBlock = Block(column: blockAheadToCheck!.column, row: blockAheadToCheck!.row, value: blockAheadToCheck!.value*2)
+            assimilatedBlock = startingBlock
+            assimilatorBlock = blockAheadToCheck!
             blockArray[startingBlock.column, startingBlock.row] = nil
-            blockArray[blockAheadToCheck!.column, blockAheadToCheck!.row] = newBlock
-            
+            blockArray[blockAheadToCheck!.column, blockAheadToCheck!.row] = nextBlock
+            delegate?.gameBlockUpgraded(self)
         }
     }
     
-    func combineBlocks(
+    func randColumn() -> Int {
+        return Int(arc4random_uniform(UInt32(blockArray.columns)))
+    }
+    
+    func randRowww() -> Int {
+        return Int(arc4random_uniform(UInt32(blockArray.rows)))
+    }
 }
